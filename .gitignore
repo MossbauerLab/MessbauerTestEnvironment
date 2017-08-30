@@ -1,9 +1,14 @@
 # Xilinx ISE Generated files
 \messbauer_generator.*
-\messbauer_generator_*
+messbauer_generator_*
 par_usage_statistics*
 webtalk_pn*
 _ngo*
 _xmsgs*
 \*xst\*
 xlnx_auto_0_xdb
+\isim\*
+*.log
+filter.filter
+fuse.xmsgs
+xilinxsim.ini
