@@ -28,6 +28,10 @@
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="messbauer_generator.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="messbauer_generator.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="messbauer_generator.lso"/>
@@ -60,102 +64,165 @@
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="messbauer_generator_par.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="messbauer_generator_summary.html"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="messbauer_generator_summary.xml"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_generator_testbench_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="messbauer_generator_testbench_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="messbauer_generator_testbench_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_generator_testbench_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="messbauer_generator_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="messbauer_generator_xst.xrpt"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1504081904" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1504081904">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1504083964" xil_pn:in_ck="258560470854179919" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1504083964">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="src/messbauer_generator.v"/>
+      <outfile xil_pn:name="tests/messbauer_generator_testbench_channelsync.v"/>
+    </transform>
+    <transform xil_pn:end_ts="1504081904" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-2931520906028274365" xil_pn:start_ts="1504081904">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1504081904" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="4498128748394572545" xil_pn:start_ts="1504081904">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1504081904" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-2637426196310548917" xil_pn:start_ts="1504081904">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1504083968" xil_pn:in_ck="258560470854179919" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1504083968">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="src/messbauer_generator.v"/>
+      <outfile xil_pn:name="tests/messbauer_generator_testbench_channelsync.v"/>
+    </transform>
+    <transform xil_pn:end_ts="1504083970" xil_pn:in_ck="258560470854179919" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="1744420928300045573" xil_pn:start_ts="1504083968">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="messbauer_generator_testbench_beh.prj"/>
+      <outfile xil_pn:name="messbauer_generator_testbench_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
+    </transform>
+    <transform xil_pn:end_ts="1504083970" xil_pn:in_ck="-3478017706810729413" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="7542238037147457762" xil_pn:start_ts="1504083970">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="messbauer_generator_testbench_isim_beh.wdb"/>
+    </transform>
     <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1503951525">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-2736079949148989342" xil_pn:start_ts="1503951525">
+    <transform xil_pn:end_ts="1504041136" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-2736079949148989342" xil_pn:start_ts="1504041136">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-2637426196310548917" xil_pn:start_ts="1503951525">
+    <transform xil_pn:end_ts="1504041136" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-2637426196310548917" xil_pn:start_ts="1504041136">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1503951525">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-130961268786449116" xil_pn:start_ts="1503951525">
+    <transform xil_pn:end_ts="1504041136" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-130961268786449116" xil_pn:start_ts="1504041136">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="250970745411629038" xil_pn:start_ts="1503951525">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
-    <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-436479424909340715" xil_pn:start_ts="1503951525">
+    <transform xil_pn:end_ts="1504041136" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-436479424909340715" xil_pn:start_ts="1504041136">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
-    <transform xil_pn:end_ts="1504039039" xil_pn:in_ck="-3070379702880177871" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="8988323856752264058" xil_pn:start_ts="1504039032">
+    <transform xil_pn:end_ts="1504080913" xil_pn:in_ck="-1920177183469059320" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="8988323856752264058" xil_pn:start_ts="1504080903">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="messbauer_generator.lso"/>
+      <outfile xil_pn:name="messbauer_generator.ngc"/>
+      <outfile xil_pn:name="messbauer_generator.ngr"/>
+      <outfile xil_pn:name="messbauer_generator.prj"/>
+      <outfile xil_pn:name="messbauer_generator.stx"/>
+      <outfile xil_pn:name="messbauer_generator.syr"/>
+      <outfile xil_pn:name="messbauer_generator.xst"/>
+      <outfile xil_pn:name="messbauer_generator_xst.xrpt"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1503951535" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-2216975082449307697" xil_pn:start_ts="1503951535">
+    <transform xil_pn:end_ts="1504041143" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-2216975082449307697" xil_pn:start_ts="1504041143">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
-    <transform xil_pn:end_ts="1504039043" xil_pn:in_ck="-4782819095084864237" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="1009842010414582988" xil_pn:start_ts="1504039039">
+    <transform xil_pn:end_ts="1504080919" xil_pn:in_ck="-4782819095084864237" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="1009842010414582988" xil_pn:start_ts="1504080913">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+      <outfile xil_pn:name="messbauer_generator.bld"/>
+      <outfile xil_pn:name="messbauer_generator.ngd"/>
+      <outfile xil_pn:name="messbauer_generator_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1504039049" xil_pn:in_ck="-4782819095084864236" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="4756088955047530681" xil_pn:start_ts="1504039043">
+    <transform xil_pn:end_ts="1504080929" xil_pn:in_ck="-4782819095084864236" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="4756088955047530681" xil_pn:start_ts="1504080919">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
+      <outfile xil_pn:name="messbauer_generator.pcf"/>
+      <outfile xil_pn:name="messbauer_generator_map.map"/>
+      <outfile xil_pn:name="messbauer_generator_map.mrp"/>
+      <outfile xil_pn:name="messbauer_generator_map.ncd"/>
+      <outfile xil_pn:name="messbauer_generator_map.ngm"/>
+      <outfile xil_pn:name="messbauer_generator_map.xrpt"/>
+      <outfile xil_pn:name="messbauer_generator_summary.xml"/>
+      <outfile xil_pn:name="messbauer_generator_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1504039059" xil_pn:in_ck="-3842787690136197587" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="93661965788626211" xil_pn:start_ts="1504039049">
+    <transform xil_pn:end_ts="1504080939" xil_pn:in_ck="-3842787690136197587" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="93661965788626211" xil_pn:start_ts="1504080929">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
+      <outfile xil_pn:name="messbauer_generator.ncd"/>
+      <outfile xil_pn:name="messbauer_generator.pad"/>
+      <outfile xil_pn:name="messbauer_generator.par"/>
+      <outfile xil_pn:name="messbauer_generator.ptwx"/>
+      <outfile xil_pn:name="messbauer_generator.unroutes"/>
+      <outfile xil_pn:name="messbauer_generator.xpi"/>
+      <outfile xil_pn:name="messbauer_generator_pad.csv"/>
+      <outfile xil_pn:name="messbauer_generator_pad.txt"/>
+      <outfile xil_pn:name="messbauer_generator_par.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1504039059" xil_pn:in_ck="-4782819095084864368" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1504039055">
+    <transform xil_pn:end_ts="1504080939" xil_pn:in_ck="-4782819095084864368" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1504080935">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="messbauer_generator.twr"/>
+      <outfile xil_pn:name="messbauer_generator.twx"/>
     </transform>
   </transforms>
 
