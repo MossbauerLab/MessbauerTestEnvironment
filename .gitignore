@@ -1,6 +1,6 @@
 # Xilinx ISE Generated files
-messbauer_generator.*
-messbauer_generator_*
+\messbauer_generator.*
+\messbauer_generator_*
 par_usage_statistics*
 webtalk_pn*
 _ngo*
