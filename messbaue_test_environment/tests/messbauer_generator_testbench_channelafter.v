@@ -24,39 +24,39 @@
 
 module messbauer_generator_testbench_channelafter;
 
-	// Inputs
-	reg aclk;
-	reg areset_n;
+    // Inputs
+    reg aclk;
+    reg areset_n;
 
-	// Outputs
-	wire start;
-	wire channel;
+    // Outputs
+    wire start;
+    wire channel;
 
-	// Instantiate the Unit Under Test (UUT)
-	messbauer_generator # (.CHANNEL_TYPE(2))  // channel after measurements
-	uut 
-	(
-		.aclk(aclk), 
-		.areset_n(areset_n), 
-		.start(start), 
-		.channel(channel)
-	);
+    // Instantiate the Unit Under Test (UUT)
+    messbauer_generator # (.CHANNEL_TYPE(2))  // channel after measurements
+    uut 
+    (
+        .aclk(aclk), 
+        .areset_n(areset_n), 
+        .start(start), 
+        .channel(channel)
+    );
 
-	initial begin
-		// Initialize Inputs
-		aclk = 0;
-		areset_n = 0;
+    initial begin
+        // Initialize Inputs
+        aclk = 0;
+        areset_n = 0;
 
-		// Wait 100 ns for global reset to finish
-		#100;
+        // Wait 100 ns for global reset to finish
+        #100;
       areset_n = 1;
-		// Add stimulus here
-	end
-	
-	always 
-	begin
-	    #20 aclk = ~aclk;
-	end
+        // Add stimulus here
+    end
+    
+    always 
+    begin
+        #20 aclk = ~aclk;
+    end
       
 endmodule
 
