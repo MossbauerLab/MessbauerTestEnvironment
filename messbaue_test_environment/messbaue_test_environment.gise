@@ -32,11 +32,11 @@
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_diff_discriminator_signals_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="messbauer_diff_discriminator_signals_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="messbauer_diff_discriminator_signals_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_diff_discriminator_signals_stx_beh.prj"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_diff_discriminator_testbench_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="messbauer_diff_discriminator_testbench_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="messbauer_diff_discriminator_testbench_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="messbauer_diff_discriminator_testbench_stx_beh.prj"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="messbauer_generator.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="messbauer_generator.cmd_log"/>
@@ -93,7 +93,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1505759297" xil_pn:in_ck="-8354056850393738489" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1505759297">
+    <transform xil_pn:end_ts="1505769475" xil_pn:in_ck="-8354056850393738489" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1505769475">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="src/messbauer_diff_discriminator_signals.v"/>
@@ -102,15 +102,13 @@
       <outfile xil_pn:name="tests/messbauer_generator_testbench_channelafter.v"/>
       <outfile xil_pn:name="tests/messbauer_generator_testbench_channelsync.v"/>
     </transform>
-    <transform xil_pn:end_ts="1505759222" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1933120712876365949" xil_pn:start_ts="1505759222">
+    <transform xil_pn:end_ts="1505760221" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="134330128290321164" xil_pn:start_ts="1505760221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1505759222" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="5453083707957021243" xil_pn:start_ts="1505759222">
+    <transform xil_pn:end_ts="1505760221" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="2822321266119623370" xil_pn:start_ts="1505760221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1504081904" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-2637426196310548917" xil_pn:start_ts="1504081904">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -119,37 +117,40 @@
     <transform xil_pn:end_ts="1505759300" xil_pn:in_ck="-8354056850393738489" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1505759300">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="src/messbauer_diff_discriminator_signals.v"/>
       <outfile xil_pn:name="src/messbauer_generator.v"/>
       <outfile xil_pn:name="tests/messbauer_diff_discriminator_testbench.v"/>
       <outfile xil_pn:name="tests/messbauer_generator_testbench_channelafter.v"/>
       <outfile xil_pn:name="tests/messbauer_generator_testbench_channelsync.v"/>
     </transform>
-    <transform xil_pn:end_ts="1505759302" xil_pn:in_ck="-8354056850393738489" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="3026550482671934521" xil_pn:start_ts="1505759300">
+    <transform xil_pn:end_ts="1505760222" xil_pn:in_ck="-8354056850393738489" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="3674280950617823479" xil_pn:start_ts="1505760221">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="messbauer_diff_discriminator_signals_beh.prj"/>
-      <outfile xil_pn:name="messbauer_diff_discriminator_signals_isim_beh.exe"/>
+      <outfile xil_pn:name="messbauer_diff_discriminator_testbench_beh.prj"/>
+      <outfile xil_pn:name="messbauer_diff_discriminator_testbench_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1505759302" xil_pn:in_ck="1562298457266861221" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6033980384890175114" xil_pn:start_ts="1505759302">
+    <transform xil_pn:end_ts="1505760222" xil_pn:in_ck="1562298457266861221" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7015309573326162092" xil_pn:start_ts="1505760222">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="messbauer_diff_discriminator_signals_isim_beh.wdb"/>
+      <outfile xil_pn:name="messbauer_diff_discriminator_testbench_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1503951525" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1503951525">
       <status xil_pn:value="SuccessfullyRun"/>
