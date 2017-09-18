@@ -42,10 +42,14 @@
  localparam LOWER_THRESHOLD_LOW_PHASE = 4; 
  localparam FINAL_STATE = 5;
  
+ localparam PAUSE_DURATION = 4;
+ 
  reg enable;
  reg[7:0] clk_counter;
  reg[7:0] impulse_counter;
  reg[7:0] total_impulse_counter;
+ reg impulse_rejected;
+ //reg[7:0] selected_impulse_counter;
  reg[2:0] state;
  reg impulse_selected;
 
@@ -56,11 +60,12 @@
           clk_counter <= 0;
           impulse_counter <= 0;
           total_impulse_counter <= 0;
-          impulse_selected <= 0;
+          // impulse_selected <= 0;
           state <= INITIAL_STATE;
           lower_threshold <= 0;
           upper_threshold <= 0;
 			 enable <= 1;
+			 impulse_rejected <= 1;
       end
       else
       begin
@@ -72,25 +77,35 @@
                      begin
                          clk_counter <= 0;
                          state <= LOWER_THRESHOLD_HIGH_PHASE;
+								 impulse_rejected <= 0;
                      end
                      LOWER_THRESHOLD_HIGH_PHASE:             
                      begin
                          lower_threshold <= 1;
-                         clk_counter <= 0;
-                         //if((impulse_selected == 0 || impulse_counter == 0) && impulse_counter <= IMPULSES_FOR_SELECTION)
-								 if(impulse_selected == 0 && impulse_counter <= IMPULSES_FOR_SELECTION)
+								 if(clk_counter == 1)
+								 begin
+								     // check should we generate upper
+									  if(impulse_counter <= IMPULSES_FOR_SELECTION)
+									      state <= LOWER_THRESHOLD_LOW_PHASE;
+									  else state <= UPPER_THRESHOLD_HIGH_PHASE;;
+								 end
+                         //clk_counter <= 0;
+								 /*if(impulse_counter <= IMPULSES_FOR_SELECTION)
                          begin
                              state <= LOWER_THRESHOLD_LOW_PHASE;
-                             impulse_selected <= 1;
+                             // impulse_selected <= 1;
                              impulse_counter <= impulse_counter + 1;
                          end
-                         else state <= UPPER_THRESHOLD_HIGH_PHASE;                      
+                         else 
+								 begin
+								     state <= FINAL_STATE; //UPPER_THRESHOLD_HIGH_PHASE;
+                         end*/						 
                      end
                      UPPER_THRESHOLD_HIGH_PHASE:
                      begin
-                         impulse_selected <= 0;
+							    impulse_rejected <= 1;
                          upper_threshold <= 1;
-                         if(clk_counter == UPPER_THRESHOLD_DURATION)
+                         if(clk_counter == UPPER_THRESHOLD_DURATION + 1)
                              state <= UPPER_THRESHOLD_LOW_PHASE;
                      end
                      UPPER_THRESHOLD_LOW_PHASE:
@@ -100,9 +115,11 @@
                      end
                      LOWER_THRESHOLD_LOW_PHASE:
                      begin
-                         lower_threshold <= 0;
-                         if(clk_counter == LOWER_THRESHOLD_DURATION)
-                         begin
+							    lower_threshold <= 0;   
+                         if(clk_counter >= LOWER_THRESHOLD_DURATION)
+                         begin					     
+									  if(impulse_rejected == 0)
+									      impulse_counter <= impulse_counter + 1;
                              total_impulse_counter <= total_impulse_counter + 1;
                              if(total_impulse_counter == IMPULSES_PER_CHANNEL)
                                  state <= FINAL_STATE;
@@ -112,6 +129,10 @@
                      FINAL_STATE:
                      begin
 							    state <= INITIAL_STATE;
+								 //impulse_selected <= 0;
+								 impulse_counter <= 0;
+                         total_impulse_counter <= 0;
+                         //impulse_selected <= 0;
                      end
                      default:
                      begin
@@ -120,9 +141,9 @@
             end
             else
             begin
-                impulse_selected <= 0;
+                //impulse_selected <= 0;
                 total_impulse_counter <= 0;
-                impulse_selected <= 0;
+                //impulse_selected <= 0;
             end
       end
  end
