@@ -21,16 +21,16 @@
  module messbauer_diff_discriminator_signals #
  (
      parameter GCLK_PERIOD = 20,                  // nanoseconds
-      parameter LOWER_THRESHOLD_DURATION = 3,      // GCLK_PERIOD
-      parameter UPPER_THRESHOLD_DURATION = 1,      // GCLK_PERIOD
-      parameter DISCRIMINATOR_IMPULSES_PAUSE = 10, // GCLK_PERIOD
-      parameter IMPULSES_PER_CHANNEL = 16,
-      parameter IMPULSES_FOR_SELECTION = 4         // number of impulses passes through diff disriminator MUST be smaller than IMPULSES_PER_CHANNEL
+     parameter LOWER_THRESHOLD_DURATION = 3,      // GCLK_PERIOD
+     parameter UPPER_THRESHOLD_DURATION = 1,      // GCLK_PERIOD
+     parameter DISCRIMINATOR_IMPULSES_PAUSE = 10, // GCLK_PERIOD
+     parameter IMPULSES_PER_CHANNEL = 16,
+     parameter IMPULSES_FOR_SELECTION = 4         // number of impulses passes through diff disriminator MUST be smaller than IMPULSES_PER_CHANNEL
  )
  (
      input wire aclk,
      input wire areset_n,
-      input wire channel,
+     input wire channel,
      output reg lower_threshold,
      output reg upper_threshold
  );
@@ -51,15 +51,16 @@
 
  always @(posedge aclk)
  begin
-     if(~areset_n)
+      if(~areset_n)
       begin
           clk_counter <= 0;
-            impulse_counter <= 0;
-            total_impulse_counter <= 0;
-            impulse_selected <= 0;
-            state <= INITIAL_STATE;
-            lower_threshold <= 0;
-            upper_threshold <= 0;
+          impulse_counter <= 0;
+          total_impulse_counter <= 0;
+          impulse_selected <= 0;
+          state <= INITIAL_STATE;
+          lower_threshold <= 0;
+          upper_threshold <= 0;
+			 enable <= 1;
       end
       else
       begin
@@ -67,48 +68,50 @@
             begin
                 clk_counter <= clk_counter + 1;
                 case (state)
-                    INITIAL_STATE:
-                    begin
+                     INITIAL_STATE:
+                     begin
                          clk_counter <= 0;
-                          state <= LOWER_THRESHOLD_HIGH_PHASE;
+                         state <= LOWER_THRESHOLD_HIGH_PHASE;
                      end
                      LOWER_THRESHOLD_HIGH_PHASE:             
-                    begin
+                     begin
                          lower_threshold <= 1;
-                          clk_counter <= 0;
-                          if((impulse_selected == 0 || impulse_counter == 0) && impulse_counter <= IMPULSES_FOR_SELECTION)
-                          begin
-                              state <= LOWER_THRESHOLD_LOW_PHASE;
-                                impulse_selected <= 1;
-                                impulse_counter <= impulse_counter + 1;
-                          end
-                         else state <= UPPER_THRESHOLD_LOW_PHASE;                      
+                         clk_counter <= 0;
+                         //if((impulse_selected == 0 || impulse_counter == 0) && impulse_counter <= IMPULSES_FOR_SELECTION)
+								 if(impulse_selected == 0 && impulse_counter <= IMPULSES_FOR_SELECTION)
+                         begin
+                             state <= LOWER_THRESHOLD_LOW_PHASE;
+                             impulse_selected <= 1;
+                             impulse_counter <= impulse_counter + 1;
+                         end
+                         else state <= UPPER_THRESHOLD_HIGH_PHASE;                      
                      end
                      UPPER_THRESHOLD_HIGH_PHASE:
-                    begin
-                          impulse_selected <= 0;
-                     upper_threshold <= 1;
-                          if(clk_counter == UPPER_THRESHOLD_DURATION)
-                              state <= UPPER_THRESHOLD_LOW_PHASE;
+                     begin
+                         impulse_selected <= 0;
+                         upper_threshold <= 1;
+                         if(clk_counter == UPPER_THRESHOLD_DURATION)
+                             state <= UPPER_THRESHOLD_LOW_PHASE;
                      end
                      UPPER_THRESHOLD_LOW_PHASE:
-                    begin
+                     begin
                          state <= LOWER_THRESHOLD_LOW_PHASE;
-                          upper_threshold <= 0;
+                         upper_threshold <= 0;
                      end
                      LOWER_THRESHOLD_LOW_PHASE:
-                    begin
+                     begin
                          lower_threshold <= 0;
-                          if(clk_counter == LOWER_THRESHOLD_DURATION)
-                          begin
-                              total_impulse_counter <= total_impulse_counter + 1;
-                                if(total_impulse_counter == IMPULSES_PER_CHANNEL)
-                                    state <= FINAL_STATE;
-                                else state <= INITIAL_STATE;
-                          end
+                         if(clk_counter == LOWER_THRESHOLD_DURATION)
+                         begin
+                             total_impulse_counter <= total_impulse_counter + 1;
+                             if(total_impulse_counter == IMPULSES_PER_CHANNEL)
+                                 state <= FINAL_STATE;
+                             else state <= INITIAL_STATE;
+                         end
                      end
                      FINAL_STATE:
                      begin
+							    state <= INITIAL_STATE;
                      end
                      default:
                      begin
@@ -117,18 +120,18 @@
             end
             else
             begin
-             impulse_selected <= 0;
-                 total_impulse_counter <= 0;
+                impulse_selected <= 0;
+                total_impulse_counter <= 0;
                 impulse_selected <= 0;
             end
       end
  end
  
- always @(posedge channel)
+ /*always @(posedge channel)
  begin
      if(~areset_n)
-          enable = 0;
-     enable = ~enable;
- end
+         enable = 0;
+     else enable = ~enable;
+ end*/
 
  endmodule

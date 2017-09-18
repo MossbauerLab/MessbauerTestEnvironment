@@ -9,7 +9,7 @@
 // Module Name:   E:/PLD/MessbauerTestEnvironment/messbaue_test_environment/tests/messbauer_generator_testbench_channelafter.v
 // Project Name:  messbaue_test_environment
 // Target Device:  
-// Tool versions:  
+// Tool versions: Xilinx ISE 14.7
 // Description: 
 //
 // Verilog Test Fixture created by ISE for module: messbauer_generator

@@ -8,8 +8,8 @@
 // Design Name:   messbauer_diff_discriminator_signals
 // Module Name:   E:/PLD/MessbauerTestEnvironment/messbaue_test_environment/tests/messbauer_diff_discriminator_testbench.v
 // Project Name:  messbaue_test_environment
-// Target Device:  
-// Tool versions:  
+// Target Device: Spartan6
+// Tool versions: XILINX ISE 14.7
 // Description: 
 //
 // Verilog Test Fixture created by ISE for module: messbauer_diff_discriminator_signals
@@ -60,7 +60,7 @@ module messbauer_diff_discriminator_testbench;
 
         // Wait 100 ns for global reset to finish
         #100;
-      areset_n = 1;
+        areset_n = 1;
         // Add stimulus here
 
     end
