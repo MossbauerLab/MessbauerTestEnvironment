@@ -48,10 +48,8 @@
  reg[7:0] clk_counter;
  reg[7:0] impulse_counter;
  reg[7:0] total_impulse_counter;
- reg impulse_rejected;
- //reg[7:0] selected_impulse_counter;
  reg[2:0] state;
- reg impulse_selected;
+ reg impulse_rejected;
  reg period_done;
 
  always @(posedge aclk)
@@ -61,7 +59,6 @@
           clk_counter <= 0;
           impulse_counter <= 0;
           total_impulse_counter <= 0;
-          // impulse_selected <= 0;
           state <= INITIAL_STATE;
           lower_threshold <= 0;
           upper_threshold <= 0;
@@ -90,18 +87,7 @@
 									  if(impulse_counter <= IMPULSES_FOR_SELECTION)
 									      state <= LOWER_THRESHOLD_LOW_PHASE;
 									  else state <= UPPER_THRESHOLD_HIGH_PHASE;;
-								 end
-                         //clk_counter <= 0;
-								 /*if(impulse_counter <= IMPULSES_FOR_SELECTION)
-                         begin
-                             state <= LOWER_THRESHOLD_LOW_PHASE;
-                             // impulse_selected <= 1;
-                             impulse_counter <= impulse_counter + 1;
-                         end
-                         else 
-								 begin
-								     state <= FINAL_STATE; //UPPER_THRESHOLD_HIGH_PHASE;
-                         end*/						 
+								 end					 
                      end
                      UPPER_THRESHOLD_HIGH_PHASE:
                      begin
@@ -130,12 +116,9 @@
                      end
                      FINAL_STATE:
                      begin
-							    //state <= INITIAL_STATE;
-								 //impulse_selected <= 0;
 								 impulse_counter <= 0;
                          total_impulse_counter <= 0;
 								 period_done <= 1;
-                         //impulse_selected <= 0;
                      end
                      default:
                      begin
@@ -143,12 +126,7 @@
                 endcase
             end
             else
-            begin
-                //impulse_selected <= 0;
-                //total_impulse_counter <= 0;
-                //impulse_selected <= 0;
 					 state <= INITIAL_STATE;
-            end
       end
  end
  
