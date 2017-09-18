@@ -52,6 +52,7 @@
  //reg[7:0] selected_impulse_counter;
  reg[2:0] state;
  reg impulse_selected;
+ reg period_done;
 
  always @(posedge aclk)
  begin
@@ -78,6 +79,7 @@
                          clk_counter <= 0;
                          state <= LOWER_THRESHOLD_HIGH_PHASE;
 								 impulse_rejected <= 0;
+								 period_done <= 0;
                      end
                      LOWER_THRESHOLD_HIGH_PHASE:             
                      begin
@@ -121,17 +123,18 @@
 									  if(impulse_rejected == 0)
 									      impulse_counter <= impulse_counter + 1;
                              total_impulse_counter <= total_impulse_counter + 1;
-                             if(total_impulse_counter == IMPULSES_PER_CHANNEL)
-                                 state <= FINAL_STATE;
-                             else state <= INITIAL_STATE;
+                             if(total_impulse_counter < IMPULSES_PER_CHANNEL)
+                                 state <= INITIAL_STATE;
+                             else state <= FINAL_STATE;
                          end
                      end
                      FINAL_STATE:
                      begin
-							    state <= INITIAL_STATE;
+							    //state <= INITIAL_STATE;
 								 //impulse_selected <= 0;
 								 impulse_counter <= 0;
                          total_impulse_counter <= 0;
+								 period_done <= 1;
                          //impulse_selected <= 0;
                      end
                      default:
@@ -142,17 +145,17 @@
             else
             begin
                 //impulse_selected <= 0;
-                total_impulse_counter <= 0;
+                //total_impulse_counter <= 0;
                 //impulse_selected <= 0;
+					 state <= INITIAL_STATE;
             end
       end
  end
  
- /*always @(posedge channel)
+ always @(posedge channel)
  begin
-     if(~areset_n)
-         enable = 0;
-     else enable = ~enable;
- end*/
+     if(period_done)
+         enable = ~enable;
+ end
 
  endmodule
