@@ -1,6 +1,9 @@
 # Xilinx ISE Generated files
 \messbauer_generator.*
 \messbauer_generator_*
+\messbauer_diff_discriminator_signals.*
+\messbauer_diff_discriminator_signals_*
+\messbauer_diff_discriminator_testbench_*
 par_usage_statistics*
 webtalk_pn*
 _ngo*
