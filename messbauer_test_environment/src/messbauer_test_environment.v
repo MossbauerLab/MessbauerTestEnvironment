@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module messbauer_test_environment
 (
-    input aclk,                  // 50 MHz GCLK, T8
-    input areset_n,              // L3 as Button
+    input global_clock,          // 50 MHz GCLK, T8
+    input global_reset,          // L3 as Button
 	 // Left Side of AX309 Board
     output v1_channel,           // H15
     output v1_start,             // F16
