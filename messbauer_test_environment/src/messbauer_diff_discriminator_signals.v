@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company:        MossbauerLab
+// Engineer:       EvilLord666 (Ushakov MV)
 // 
 // Create Date:    21:01:28 08/30/2017 
 // Design Name:    messbauer_test_environment
@@ -45,6 +45,7 @@
  localparam PAUSE_DURATION = 4;
  
  reg enable;
+ reg first_enable;
  reg[7:0] clk_counter;
  reg[7:0] impulse_counter;
  reg[7:0] total_impulse_counter;
@@ -54,86 +55,91 @@
 
  always @(posedge aclk)
  begin
-      if(~areset_n)
-      begin
-          clk_counter <= 0;
-          impulse_counter <= 0;
-          total_impulse_counter <= 0;
-          state <= INITIAL_STATE;
-          lower_threshold <= 0;
-          upper_threshold <= 0;
-			 enable <= 1;
-			 impulse_rejected <= 1;
-      end
-      else
-      begin
-          if(enable)
-            begin
-                clk_counter <= clk_counter + 1;
-                case (state)
-                     INITIAL_STATE:
+     if(~areset_n)
+     begin
+         clk_counter <= 0;
+         impulse_counter <= 0;
+         total_impulse_counter <= 0;
+         state <= INITIAL_STATE;
+         lower_threshold <= 0;
+         upper_threshold <= 0;
+         first_enable <= 1;
+         impulse_rejected <= 1;
+     end
+     else
+     begin
+         if(first_enable || enable)
+         begin
+             clk_counter <= clk_counter + 1;
+             case (state)
+                 INITIAL_STATE:
+                 begin
+                     clk_counter <= 0;
+                     state <= LOWER_THRESHOLD_HIGH_PHASE;
+                     impulse_rejected <= 0;
+                     period_done <= 0;
+                 end
+                 LOWER_THRESHOLD_HIGH_PHASE:             
+                 begin
+                     lower_threshold <= 1;
+                     if(clk_counter == 1)
                      begin
-                         clk_counter <= 0;
-                         state <= LOWER_THRESHOLD_HIGH_PHASE;
-								 impulse_rejected <= 0;
-								 period_done <= 0;
+                         // check should we generate upper
+                         if(impulse_counter <= IMPULSES_FOR_SELECTION)
+                             state <= LOWER_THRESHOLD_LOW_PHASE;
+                         else state <= UPPER_THRESHOLD_HIGH_PHASE;;
+                     end                     
+                 end
+                 UPPER_THRESHOLD_HIGH_PHASE:
+                 begin
+                     impulse_rejected <= 1;
+                     upper_threshold <= 1;
+                     if(clk_counter == UPPER_THRESHOLD_DURATION + 1)
+                         state <= UPPER_THRESHOLD_LOW_PHASE;
+                 end
+                 UPPER_THRESHOLD_LOW_PHASE:
+                 begin
+                     state <= LOWER_THRESHOLD_LOW_PHASE;
+                     upper_threshold <= 0;
+                 end
+                 LOWER_THRESHOLD_LOW_PHASE:
+                 begin
+                     lower_threshold <= 0;   
+                     if(clk_counter >= LOWER_THRESHOLD_DURATION)
+                     begin                         
+                         if(impulse_rejected == 0)
+                             impulse_counter <= impulse_counter + 1;
+                         total_impulse_counter <= total_impulse_counter + 1;
+                         if(total_impulse_counter < IMPULSES_PER_CHANNEL)
+                             state <= INITIAL_STATE;
+                         else state <= FINAL_STATE;
                      end
-                     LOWER_THRESHOLD_HIGH_PHASE:             
-                     begin
-                         lower_threshold <= 1;
-								 if(clk_counter == 1)
-								 begin
-								     // check should we generate upper
-									  if(impulse_counter <= IMPULSES_FOR_SELECTION)
-									      state <= LOWER_THRESHOLD_LOW_PHASE;
-									  else state <= UPPER_THRESHOLD_HIGH_PHASE;;
-								 end					 
-                     end
-                     UPPER_THRESHOLD_HIGH_PHASE:
-                     begin
-							    impulse_rejected <= 1;
-                         upper_threshold <= 1;
-                         if(clk_counter == UPPER_THRESHOLD_DURATION + 1)
-                             state <= UPPER_THRESHOLD_LOW_PHASE;
-                     end
-                     UPPER_THRESHOLD_LOW_PHASE:
-                     begin
-                         state <= LOWER_THRESHOLD_LOW_PHASE;
-                         upper_threshold <= 0;
-                     end
-                     LOWER_THRESHOLD_LOW_PHASE:
-                     begin
-							    lower_threshold <= 0;   
-                         if(clk_counter >= LOWER_THRESHOLD_DURATION)
-                         begin					     
-									  if(impulse_rejected == 0)
-									      impulse_counter <= impulse_counter + 1;
-                             total_impulse_counter <= total_impulse_counter + 1;
-                             if(total_impulse_counter < IMPULSES_PER_CHANNEL)
-                                 state <= INITIAL_STATE;
-                             else state <= FINAL_STATE;
-                         end
-                     end
-                     FINAL_STATE:
-                     begin
-								 impulse_counter <= 0;
-                         total_impulse_counter <= 0;
-								 period_done <= 1;
-                     end
-                     default:
-                     begin
-                     end             
-                endcase
-            end
-            else
-					 state <= INITIAL_STATE;
+                 end
+                 FINAL_STATE:
+                 begin
+                     impulse_counter <= 0;
+                     total_impulse_counter <= 0;
+                     period_done <= 1;
+							first_enable <= 0;
+                 end
+                 default:
+                 begin
+                 end             
+             endcase
+         end
+         else state <= INITIAL_STATE;
       end
  end
  
- always @(posedge channel)
+ always @(posedge channel or negedge areset_n)
  begin
+     if(~areset_n)
+	      enable = 0;
+     else
+     begin
      if(period_done)
          enable = ~enable;
+     end
  end
 
  endmodule
