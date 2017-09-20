@@ -31,15 +31,15 @@ module messbauer_test_environment
     output v2_channel,           // L16
     output v2_start,             // M15
     output v2_lower_threshold,   // R16
-    output v2_upper_threshold    // T15
+    output v2_upper_threshold    // T14
 );
 
 // Left Side (v1) interface
-messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(1)) v1_generator(.aclk(aclk), .areset_n(areset_n), .start(v1_start), .channel(v1_channel));
-messbauer_diff_discriminator_signals v1_diff_discriminator(.aclk(aclk), .areset_n(areset_n), .channel(v1_channel), .lower_threshold(v1_lower_threshold), .upper_threshold(v1_upper_threshold));
+messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(1)) v1_generator(.aclk(global_clock), .areset_n(global_reset), .start(v1_start), .channel(v1_channel));
+messbauer_diff_discriminator_signals v1_diff_discriminator(.aclk(global_clock), .areset_n(global_reset), .channel(v1_channel), .lower_threshold(v1_lower_threshold), .upper_threshold(v1_upper_threshold));
 
 // Right Side (v1) interface
-messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(1)) v2_generator(.aclk(aclk), .areset_n(areset_n), .start(v2_start), .channel(v2_channel));
-messbauer_diff_discriminator_signals v2_diff_discriminator(.aclk(aclk), .areset_n(areset_n), .channel(v2_channel), .lower_threshold(v2_lower_threshold), .upper_threshold(v2_upper_threshold));
+messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(2)) v2_generator(.aclk(global_clock), .areset_n(global_reset), .start(v2_start), .channel(v2_channel));
+messbauer_diff_discriminator_signals v2_diff_discriminator(.aclk(global_clock), .areset_n(global_reset), .channel(v2_channel), .lower_threshold(v2_lower_threshold), .upper_threshold(v2_upper_threshold));
 
 endmodule

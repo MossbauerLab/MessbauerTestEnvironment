@@ -46,9 +46,9 @@
  
  reg enable;
  reg first_enable;
- reg[7:0] clk_counter;
- reg[7:0] impulse_counter;
- reg[7:0] total_impulse_counter;
+ reg[15:0] clk_counter;
+ reg[15:0] impulse_counter;
+ reg[15:0] total_impulse_counter;
  reg[2:0] state;
  reg impulse_rejected;
  reg period_done;
@@ -70,7 +70,7 @@
      begin
          if(first_enable || enable)
          begin
-             clk_counter <= clk_counter + 1;
+             clk_counter <= clk_counter + 1'b1;
              case (state)
                  INITIAL_STATE:
                  begin
@@ -108,8 +108,8 @@
                      if(clk_counter >= LOWER_THRESHOLD_DURATION)
                      begin                         
                          if(impulse_rejected == 0)
-                             impulse_counter <= impulse_counter + 1;
-                         total_impulse_counter <= total_impulse_counter + 1;
+                             impulse_counter <= impulse_counter + 1'b1;
+                         total_impulse_counter <= total_impulse_counter + 1'b1;
                          if(total_impulse_counter < IMPULSES_PER_CHANNEL)
                              state <= INITIAL_STATE;
                          else state <= FINAL_STATE;
