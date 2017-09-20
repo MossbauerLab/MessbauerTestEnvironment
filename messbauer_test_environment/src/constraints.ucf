@@ -4,11 +4,11 @@ TIMESPEC ts_global_clock_pin = PERIOD global_clock_pin 50000 kHz;
 NET global_reset LOC = L3 | IOSTANDARD = "LVCMOS33";
 
 NET v1_channel LOC = F16 | IOSTANDARD = "LVCMOS33";
-NET v1_start LOC = H15 | IOSTANDARD = "LVCMOS33";
+NET v1_start LOC = E16 | IOSTANDARD = "LVCMOS33";
 NET v1_lower_threshold LOC = C10 | IOSTANDARD = "LVCMOS33";
 NET v1_upper_threshold LOC = D16 | IOSTANDARD = "LVCMOS33";
 
 NET v2_channel LOC = L16 | IOSTANDARD = "LVCMOS33";
 NET v2_start LOC = M15 | IOSTANDARD = "LVCMOS33";
 NET v2_lower_threshold LOC = R16 | IOSTANDARD = "LVCMOS33";
-NET v2_upper_threshold LOC = T15 | IOSTANDARD = "LVCMOS33";
+NET v2_upper_threshold LOC = T14 | IOSTANDARD = "LVCMOS33";
