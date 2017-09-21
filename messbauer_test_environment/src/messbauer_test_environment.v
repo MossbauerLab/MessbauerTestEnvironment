@@ -22,9 +22,9 @@ module messbauer_test_environment
 (
     input global_clock,          // 50 MHz GCLK, T8
     input global_reset,          // L3 as Button
-	 // Left Side of AX309 Board
-    output v1_channel,           // H15
-    output v1_start,             // F16
+    // Left Side of AX309 Board
+    output v1_channel,           // F16
+    output v1_start,             // E16
     output v1_lower_threshold,   // C10
     output v1_upper_threshold,   // D16
     // Right Side of AX309 Board
@@ -47,20 +47,20 @@ messbauer_diff_discriminator_signals v2_diff_discriminator(.aclk(global_clock), 
 
 always @(posedge global_clock)
 begin
-    if(~global_reset)
-	 begin
-	     internal_reset <= 1;
-		  counter <= 0;
-	 end
-	 if(counter < 16)
-	     counter <= counter + 1'b1;
-	 if(counter >= 16 && counter < 32)
-	 begin
-	     counter <= counter + 1'b1;
-		  internal_reset <= 0;
-	 end
-	 if(counter == 32)
-	     internal_reset <= 1;
+     if(~global_reset)
+     begin
+         internal_reset <= 1;
+          counter <= 0;
+     end
+     if(counter < 16)
+         counter <= counter + 1'b1;
+     if(counter >= 16 && counter < 32)
+     begin
+         counter <= counter + 1'b1;
+          internal_reset <= 0;
+     end
+     if(counter == 32)
+         internal_reset <= 1;
 end
 
 endmodule
