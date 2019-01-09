@@ -25,21 +25,21 @@ module messbauer_saw_tooth_generator #
     parameter DATA_WIDTH = 8
 )
 (
-    input wire channel,
+    input wire clk,
     input wire areset_n,
     output reg [DATA_WIDTH-1:0] out_value
 );
     localparam RATIO_SLOPE_DURATOIN = DIRECT_SLOPE_DURATION / REVERSE_SLOPE_DURATION;
 	 reg dir;
 	 
-    always @ (negedge channel)
+    always @ (negedge clk)
     begin
 	     if (!areset_n) 
 	     begin
 		      out_value <= 0;
 		      dir <= 0;
 	     end 
-	     else 
+	     else
 	     begin
             if(dir == 0)
             begin 

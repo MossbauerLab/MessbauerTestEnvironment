@@ -25,7 +25,7 @@
 module messbauer_saw_tooth_generator_testbench;
 
 	// Inputs
-	reg channel;
+	reg clk;
 	reg areset_n;
 
 	// Outputs
@@ -34,16 +34,20 @@ module messbauer_saw_tooth_generator_testbench;
 
 	// Instantiate the Unit Under Test (UUT)
 	messbauer_saw_tooth_generator uut (
-		.channel(channel), 
+		.clk(clk), 
 		.areset_n(areset_n), 
 		.out_value(out_value)
 	);
 
 	initial begin
 		// Initialize Inputs
-		channel = 1;
+		clk = 1;
 		areset_n = 0;
 		counter = 0;
+		# 20
+		clk = 0;
+		# 20
+		clk = 1;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -56,7 +60,7 @@ module messbauer_saw_tooth_generator_testbench;
 	
 	always
 	begin
-	    #128000 channel <= ~channel;
+	    #128000 clk <= ~clk;
 	    // counter <= counter + 1;		 
 	end
 	
