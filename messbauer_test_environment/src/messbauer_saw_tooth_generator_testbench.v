@@ -30,6 +30,7 @@ module messbauer_saw_tooth_generator_testbench;
 
 	// Outputs
 	wire [7:0] out_value;
+	reg [11:0] counter;
 
 	// Instantiate the Unit Under Test (UUT)
 	messbauer_saw_tooth_generator uut (
@@ -40,15 +41,26 @@ module messbauer_saw_tooth_generator_testbench;
 
 	initial begin
 		// Initialize Inputs
-		channel = 0;
+		channel = 1;
 		areset_n = 0;
+		counter = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-
+      areset_n = 1;
 	end
+	
+	
+	
+	always
+	begin
+	    #128000 channel <= ~channel;
+	    // counter <= counter + 1;		 
+	end
+	
+	// todo: add channel calculation, for detecting reverse slope
       
 endmodule
 
