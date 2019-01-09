@@ -29,8 +29,8 @@ module messbauer_saw_tooth_generator_testbench;
 	reg areset_n;
 
 	// Outputs
-	wire [7:0] out_value;
-	reg [11:0] counter;
+	wire [11:0] out_value;
+	// reg [11:0] counter;
 
 	// Instantiate the Unit Under Test (UUT)
 	messbauer_saw_tooth_generator uut (
@@ -41,13 +41,14 @@ module messbauer_saw_tooth_generator_testbench;
 
 	initial begin
 		// Initialize Inputs
-		clk = 1;
-		areset_n = 0;
-		counter = 0;
-		# 20
 		clk = 0;
-		# 20
+		areset_n = 0;
+		// counter = 0;
+		// synch reset ...
+		#20;
 		clk = 1;
+		#20;
+		clk = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -56,11 +57,9 @@ module messbauer_saw_tooth_generator_testbench;
       areset_n = 1;
 	end
 	
-	
-	
 	always
 	begin
-	    #128000 clk <= ~clk;
+	    #20 clk <= ~clk;
 	    // counter <= counter + 1;		 
 	end
 	
