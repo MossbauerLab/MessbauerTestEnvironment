@@ -32,7 +32,7 @@ module messbauer_saw_tooth_generator #
     localparam RATIO_SLOPE_DURATOIN = DIRECT_SLOPE_DURATION / REVERSE_SLOPE_DURATION;
 	 reg dir;
 	 
-    always @ (posedge channel)
+    always @ (negedge channel)
     begin
 	     if (!areset_n) 
 	     begin
