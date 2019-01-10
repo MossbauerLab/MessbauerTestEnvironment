@@ -38,13 +38,20 @@ reg internal_reset;
 reg [5:0] counter;
 
 // Left Side (v1) interface
+// Start, Channel generation
 messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(1)) v1_generator(.aclk(global_clock), .areset_n(global_reset & internal_reset), .start(v1_start), .channel(v1_channel));
+// Saw tooth generation (velocity refence signal)
+// Signals 4 testing Differntial discriminator test
 messbauer_diff_discriminator_signals v1_diff_discriminator(.aclk(global_clock), .areset_n(global_reset & internal_reset), .channel(v1_channel), .lower_threshold(v1_lower_threshold), .upper_threshold(v1_upper_threshold));
 
 // Right Side (v1) interface
+// Start, Channel generation
 messbauer_generator #(.CHANNEL_NUMBER(512), .CHANNEL_TYPE(2)) v2_generator(.aclk(global_clock), .areset_n(global_reset & internal_reset), .start(v2_start), .channel(v2_channel));
+// Saw tooth generation (velocity refence signal)
+// Signals 4 testing Differntial discriminator test
 messbauer_diff_discriminator_signals v2_diff_discriminator(.aclk(global_clock), .areset_n(global_reset & internal_reset), .channel(v2_channel), .lower_threshold(v2_lower_threshold), .upper_threshold(v2_upper_threshold));
 
+// Reset generation
 always @(posedge global_clock)
 begin
      if(~global_reset)

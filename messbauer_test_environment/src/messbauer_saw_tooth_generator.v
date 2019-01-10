@@ -1,20 +1,20 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company:        MossbauerLab
+// Engineer:       EvilLord666 (Ushakov MV)
 // 
 // Create Date:    01:41:52 01/09/2019 
 // Design Name: 
 // Module Name:    messbauer_saw_tooth_generator 
-// Project Name: 
+// Project Name:   messbauer_test_environment
 // Target Devices: 
-// Tool versions: 
-// Description: 
+// Tool versions:  ISE 14.7
+// Description:    ALINX AX309 Board Messbauer Generator
 //
 // Dependencies: 
 //
 // Revision: 
-// Revision 0.01 - File Created
+// Revision 1.0
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
